@@ -1,0 +1,6 @@
+
+dependencies {
+
+    implementation "com.spicter.curtis.libraries:com.spicter.curtis.library.shiro-core:$curtisVersion"
+    implementation "com.spicter.curtis.libraries:com.spicter.curtis.library.jmx:$curtisVersion"
+}

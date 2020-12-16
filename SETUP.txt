@@ -1,0 +1,13 @@
+
+
+Start Cassandra in Docker
+=========================
+    docker run -d -p 7000:7000 -p 7001:7001 -p 7199:7199 -p 9042:9042 -p 9160:9160 --name polygene-cassandra cassandra
+    docker logs -f polygene-cassandra
+
+and wait for the following log message to appear.
+
+    Starting listening for CQL clients on /0.0.0.0:9042 (unencrypted)...
+
+after that you can Ctrl-C back to command line.
+

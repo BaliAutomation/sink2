@@ -1,0 +1,56 @@
+apply plugin: 'application'
+
+mainClassName="com.sensetif.sink.app.SinkLauncher"
+
+startScripts {
+  applicationName = "Sink"
+  optsEnvironmentVar = "SINK_OPTS"
+
+  // GC Tuning strategies, see https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/
+  // Strict memory bound
+  // defaultJvmOpts << "-Xmx512M -Xms512M"
+
+  // Goal oriented, "throughput" and "max pause"
+  // defaultJvmOpts << "-XX:MaxGCPauseMillis=300 -XX:GCTimeRatio=19"
+
+  // Garbage Collector
+  // OneOf; -XX:+UseG1GC, -XX:+UseConcMarkSweepGC, -XX:-UseParallelOldGC, -XX:+UseSerialGC
+  defaultJvmOpts << "-XX:+UseG1GC"
+
+  // Custom start scripts
+  unixStartScriptGenerator.template = resources.text.fromFile('src/scripts/customUnixStartScript.txt')
+  windowsStartScriptGenerator.template = resources.text.fromFile('src/scripts/customWindowsStartScript.txt')
+}
+
+dependencies {
+  implementation project( ":model" )
+  implementation project( ":rest" )
+  implementation "com.spicter.curtis.libraries:com.spicter.curtis.library.shiro-web:$curtisVersion"
+  implementation "com.spicter.curtis.core:com.spicter.curtis.core.spi:$curtisVersion"
+  implementation "com.spicter.curtis.core:com.spicter.curtis.core.bootstrap:$curtisVersion"
+  implementation "com.spicter.curtis.extensions:com.spicter.curtis.extension.entitystore-cassandra:$curtisVersion"
+  implementation "com.spicter.curtis.extensions:com.spicter.curtis.extension.indexing-rdf4j:$curtisVersion"
+  implementation "com.spicter.curtis.extensions:com.spicter.curtis.extension.serialization-javaxjson:$curtisVersion"
+  implementation "com.spicter.curtis.extensions:com.spicter.curtis.extension.cache-memcache:$curtisVersion"
+  implementation "com.spicter.curtis.extensions:com.spicter.curtis.extension.metrics-codahale:$curtisVersion"
+  implementation "com.spicter.curtis.services:com.spicter.curtis.service.app-support:$curtisVersion"
+  implementation 'org.slf4j:jul-to-slf4j:1.7.30'
+  runtimeOnly "com.spicter.curtis.core:com.spicter.curtis.core.runtime:$curtisVersion"
+  runtimeOnly "org.apache.johnzon:johnzon-core:$johnzonVersion"
+  runtimeOnly "org.apache.johnzon:johnzon-mapper:$johnzonVersion"
+  runtimeOnly "org.apache.geronimo.specs:geronimo-json_1.1_spec:1.0"
+  runtimeOnly "ch.qos.logback:logback-classic:$logbackVersion"
+  runtimeOnly "ch.qos.logback:logback-core:$logbackVersion"
+
+  implementation files('/home/niclas/dev/sensetif/sink2/app/src/dist/config/development')
+
+  testImplementation "com.spicter.curtis.tools:com.spicter.curtis.tool.model-detail:$curtisVersion"
+  testImplementation "com.spicter.curtis.core:com.spicter.curtis.core.testsupport:$curtisVersion"
+  testImplementation "com.github.tdomzal:junit-docker-rule:0.3"
+
+
+}
+
+tasks.withType(Tar){
+  compression = Compression.GZIP
+}

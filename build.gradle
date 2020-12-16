@@ -1,0 +1,30 @@
+
+if( project.version == 'unspecified' )
+{
+  project.version = System.properties.version ?: '0'
+}
+
+rootProject.ext {
+  curtisVersion = "0"
+  logbackVersion = "1.2.3"
+  johnzonVersion = "1.1.0"
+  jerseyVersion = "2.23.1"
+  jettyVersion = "9.2.17.v20160517"
+}
+
+allprojects() {
+  apply plugin: 'java-library'
+  apply plugin: 'maven'
+
+  defaultTasks 'assemble'
+
+  repositories {
+    mavenLocal()
+    mavenCentral()
+  }
+
+  dependencies {
+    implementation "com.spicter.curtis.core:com.spicter.curtis.core.api:$curtisVersion"
+    testImplementation "com.spicter.curtis.core:com.spicter.curtis.core.testsupport:$curtisVersion"
+  }
+}

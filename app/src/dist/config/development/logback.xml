@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ /* Copyright Spicter AG, Switzerland. All rights reserved */
+  -->
+<configuration>
+
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[CURTIS] @%-20thread %-5level %-45logger{45} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="stdout" />
+    </root>
+
+    <logger name="com.spicter.curtis" level="debug"/>
+    <logger name="org.eclipse.jetty" level="info"/>
+    <logger name="org.jetty" level="info"/>
+    <logger name="org.glassfish.jersey.server.model.Parameter" level="info"/>
+    <logger name="org.glassfish.jersey" level="debug"/>
+    <logger name="javax.ws" level="debug"/>
+
+</configuration>
