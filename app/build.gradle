@@ -28,13 +28,14 @@ dependencies {
   implementation "com.spicter.curtis.libraries:com.spicter.curtis.library.shiro-web:$curtisVersion"
   implementation "com.spicter.curtis.core:com.spicter.curtis.core.spi:$curtisVersion"
   implementation "com.spicter.curtis.core:com.spicter.curtis.core.bootstrap:$curtisVersion"
-  implementation "com.spicter.curtis.extensions:com.spicter.curtis.extension.entitystore-cassandra:$curtisVersion"
+//  implementation "com.spicter.curtis.extensions:com.spicter.curtis.extension.entitystore-cassandra:$curtisVersion"
   implementation "com.spicter.curtis.extensions:com.spicter.curtis.extension.indexing-rdf4j:$curtisVersion"
   implementation "com.spicter.curtis.extensions:com.spicter.curtis.extension.serialization-javaxjson:$curtisVersion"
   implementation "com.spicter.curtis.extensions:com.spicter.curtis.extension.cache-memcache:$curtisVersion"
   implementation "com.spicter.curtis.extensions:com.spicter.curtis.extension.metrics-codahale:$curtisVersion"
   implementation "com.spicter.curtis.services:com.spicter.curtis.service.app-support:$curtisVersion"
   implementation 'org.slf4j:jul-to-slf4j:1.7.30'
+  implementation 'com.fasterxml.jackson:jackson-base:2.12.0'
   runtimeOnly "com.spicter.curtis.core:com.spicter.curtis.core.runtime:$curtisVersion"
   runtimeOnly "org.apache.johnzon:johnzon-core:$johnzonVersion"
   runtimeOnly "org.apache.johnzon:johnzon-mapper:$johnzonVersion"

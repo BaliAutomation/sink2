@@ -1,16 +1,16 @@
 package com.sensetif.sink.app;
 
+import com.sensetif.sink.model.account.AuthConfiguration;
+import com.sensetif.sink.model.account.AuthService;
+import com.sensetif.sink.model.account.Group;
+import com.sensetif.sink.model.account.Permission;
+import com.sensetif.sink.model.account.User;
 import com.sensetif.sink.model.account.UserService;
 import com.sensetif.sink.model.dashboard.Dashboard;
 import com.sensetif.sink.model.dashboard.DashboardService;
 import com.sensetif.sink.model.dashboard.DataPointView;
 import com.sensetif.sink.model.dashboard.UserDashboards;
 import com.sensetif.sink.model.organization.Organization;
-import com.sensetif.sink.model.account.AuthConfiguration;
-import com.sensetif.sink.model.account.AuthService;
-import com.sensetif.sink.model.account.Group;
-import com.sensetif.sink.model.account.Permission;
-import com.sensetif.sink.model.account.User;
 import com.sensetif.sink.rest.AccountsResource;
 import com.sensetif.sink.rest.DashboardsResource;
 import com.sensetif.sink.rest.DataCollectionResource;
@@ -19,12 +19,9 @@ import com.spicter.curtis.api.common.Visibility;
 import com.spicter.curtis.api.structure.Application;
 import com.spicter.curtis.bootstrap.Assembler;
 import com.spicter.curtis.service.application.BusinessApplicationBuilder;
-import java.io.File;
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
-import org.glassfish.jersey.message.internal.MessageBodyFactory;
 import org.slf4j.bridge.SLF4JBridgeHandler;
 
 public class SinkLauncher
@@ -38,8 +35,8 @@ public class SinkLauncher
     {
         enableJulToSlf4j();
         System.out.println( System.getProperties().entrySet().stream().filter(e -> ((String) e.getKey()).startsWith( "java" ) ).collect( Collectors.toList() ));
-        BusinessApplicationBuilder builder = new BusinessApplicationBuilder( name, version, getApplicationMode() );
-        Application build = builder.withEntityStoreCassandra()
+        Application build = new BusinessApplicationBuilder( name, version, getApplicationMode() )
+            .withEntityStoreMemory()
             .withMetrics()
             .withIndexingRdf()
             .withJetty( "localhost", 8080 )

@@ -10,6 +10,7 @@ import com.spicter.curtis.library.shiro.concerns.RequiresPermissions;
 import java.net.URI;
 import java.util.List;
 import javax.inject.Inject;
+import javax.inject.Singleton;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -23,7 +24,8 @@ import static java.lang.String.format;
 
 @Mixins( DashboardsResource.Mixin.class )
 @Path( "" )
-@Produces( MediaType.APPLICATION_JSON)
+@Singleton
+@Produces( MediaType.APPLICATION_JSON )
 public interface DashboardsResource extends ProtectedResource
 {
     @GET
@@ -49,6 +51,11 @@ public interface DashboardsResource extends ProtectedResource
         private DashboardService service;
         private URI baseUri;
 
+        public Mixin()
+        {
+            System.out.println( "NIclas" );
+        }
+
         @Override
         public Response fetch()
         {
@@ -67,7 +74,7 @@ public interface DashboardsResource extends ProtectedResource
             {
                 return Response
                     .status( Response.Status.NOT_FOUND )
-                    .entity( format( "You don't have a dashboard named '%s'", dashboardName ) )
+                    .entity( format( "{ \"error\" : \"You don't have a dashboard named '%s'\" }", dashboardName ) )
                     .build();
             }
             return Response.accepted( dashboard ).build();

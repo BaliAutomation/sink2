@@ -1,0 +1,32 @@
+{
+  "apiVersion": "1.1",
+  "title": "Curtis Demo App",
+  "schemes": ["http"],
+  "description": "This is a demonstration of Swagger capability in Jersey integration",
+  "termsOfServiceUrl": "See http://www.spicter.com/TC.html",
+  "contact": "Andreas Oberhack",
+  "license": "Proprietary",
+  "licenseUrl": "http://www.spicter.com/license.html",
+  "filterClass": "",
+  "resourcePackage": "",
+  "info": {
+    "description": "",
+    "version": "",
+    "title": "",
+    "termsOfService": "",
+    "contact": {
+      "name": "Niclas",
+      "email": "niclas@example.com",
+      "url": "http://example.com"
+    },
+    "license": {
+      "name": "Properietary",
+      "url": "http://www.spicter.com/license.html"
+    }
+  },
+  "host": "",
+  "basePath": {
+    "scan": "",
+    "prettyPrint": ""
+  }
+}
